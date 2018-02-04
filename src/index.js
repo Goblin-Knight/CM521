@@ -104,7 +104,11 @@ class App extends React.Component {
           
           <div id="messages" ref="messages">
             {this.state.messages.map((message, i) => {
-              return <p key={i}>{message}</p>
+              return <div key={i}>
+                <div>{message.sid}</div>
+                <div>{message.msg}</div>
+                <div>{message.t}</div>
+              </div>
             })}
           </div>
           <p className="loading">Loading...</p>
