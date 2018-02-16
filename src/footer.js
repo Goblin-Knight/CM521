@@ -16,12 +16,12 @@ const styles = theme => ({
   },
   grid: {},
   paper: {
-    padding: theme.spacing.unit * 0.8,
+    padding: theme.spacing.unit * 0.8
   },
   form: {
     border: "3px solid #666",
-    borderRadius: '8px',
-    padding: '5px 0px 10px 0px',
+    borderRadius: "8px",
+    padding: "5px 0px 10px 0px"
   },
   button: {
     margin: theme.spacing.unit
@@ -42,7 +42,6 @@ class Footer extends React.Component {
 
   onInputChange(e) {
     e.preventDefault();
-    this.props.onInputChangeCallBack();
     this.setState({ currentText: e.target.value });
   }
 
@@ -73,8 +72,9 @@ class Footer extends React.Component {
                 label="請輸入你的訊息!"
                 multiline
                 rowsMax="10"
-                value={this.state.currentText}                
+                value={this.state.currentText}
                 className={classes.textField}
+                onChange={this.onInputChange.bind(this)}
               />
             </Grid>
             <Grid item>

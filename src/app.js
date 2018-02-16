@@ -158,7 +158,7 @@ function Header() {
 class App extends React.Component {
   constructor() {
     super();
-    
+
     // use current hostname/port as colyseus server endpoint
     var endpoint = "wss:colyseus-example.herokuapp.com";
 
@@ -188,7 +188,7 @@ class App extends React.Component {
       mobileOpen: false,
       messages: []
     };
-/*
+    /*
     this.state = {
       isLoaded: true,
       mobileOpen: false,
@@ -229,15 +229,19 @@ class App extends React.Component {
   }
 
   updateDimensions() {
-    console.log("updateDimensions");
-    var footergrid = ReactDOM.findDOMNode(this.refs.footergrid);
-    var messages = ReactDOM.findDOMNode(this.refs.messages);
-    var vh = Math.max(
-      document.documentElement.clientHeight,
-      window.innerHeight || 0
-    );
-    messages.style.maxHeight = vh - footergrid.clientHeight - 70 + "px";
-    this.autoScroll();
+    //    console.log("updateDimensions");
+    if (this.refs.footergrid != null && this.refs.messages != null) {
+      var footergrid = ReactDOM.findDOMNode(this.refs.footergrid);
+      var messages = ReactDOM.findDOMNode(this.refs.messages);
+      var vh = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      );
+
+      messages.style.maxHeight = vh - footergrid.clientHeight - 70 + "px";
+
+      this.autoScroll();
+    }
 
     //console.log(messages.style.maxHeight);
   }
@@ -247,6 +251,10 @@ class App extends React.Component {
   }
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions.bind(this));
+    if (this.chatRoom.sessionId != null) {
+      console.log("leave");
+      this.chatRoom.leave();
+    }
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateDimensions.bind(this));
@@ -303,7 +311,7 @@ class App extends React.Component {
       this.screenview = (
         <main className={classes.content}>
           <Grid
-            wrap='nowrap'
+            wrap="nowrap"
             spacing={0}
             container
             className={classes.grid}
@@ -323,8 +331,7 @@ class App extends React.Component {
                       className={
                         //"AHHHHHHHH" == message.sid
                         this.chatRoom.sessionId == message.sid
-                          ? 
-                          [classes.ul, classes.selfUl]
+                          ? [classes.ul, classes.selfUl]
                           : [classes.ul]
                       }
                     >
@@ -336,8 +343,7 @@ class App extends React.Component {
                         className={
                           //"AHHHHHHHH" == message.sid
                           this.chatRoom.sessionId == message.sid
-                            ? 
-                            [classes.selfListItem, classes.listItem]
+                            ? [classes.selfListItem, classes.listItem]
                             : [classes.listItem]
                         }
                       >
@@ -353,11 +359,10 @@ class App extends React.Component {
                               className={
                                 //"AHHHHHHHH" == message.sid
                                 this.chatRoom.sessionId == message.sid
-                                  ? 
-                                  [
-                                    classes.selfListItemText,
-                                    classes.listItemText
-                                  ]
+                                  ? [
+                                      classes.selfListItemText,
+                                      classes.listItemText
+                                    ]
                                   : [classes.listItemText]
                               }
                               dense
@@ -388,9 +393,7 @@ class App extends React.Component {
                 onlyEvent
                 onResize={this.updateDimensions.bind(this)}
               >
-                <Footer
-                  chatRoom={this.chatRoom}                  
-                />
+                <Footer chatRoom={this.chatRoom} />
               </ResizeAware>
             </Grid>
           </Grid>
