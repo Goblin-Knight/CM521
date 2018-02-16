@@ -158,7 +158,7 @@ function Header() {
 class App extends React.Component {
   constructor() {
     super();
-    /*
+    
     // use current hostname/port as colyseus server endpoint
     var endpoint = "wss:colyseus-example.herokuapp.com";
 
@@ -188,7 +188,7 @@ class App extends React.Component {
       mobileOpen: false,
       messages: []
     };
-*/
+/*
     this.state = {
       isLoaded: true,
       mobileOpen: false,
@@ -208,7 +208,7 @@ class App extends React.Component {
         { sid: "HHHHHHHHH", msg: "HAHAHAHA", t: 1518597875000 },
         { sid: "HHHHHHHHH", msg: "HAHAHAHA", t: 1518597875000 }
       ]
-    };
+    };*/
   }
 
   handleDrawerToggle = () => {
@@ -321,8 +321,9 @@ class App extends React.Component {
                   <li key={`section-${i}`} className={classes.listSection}>
                     <ul
                       className={
-                        "AHHHHHHHH" == message.sid
-                          ? //this.chatRoom.sessionId == message.sid
+                        //"AHHHHHHHH" == message.sid
+                        this.chatRoom.sessionId == message.sid
+                          ? 
                           [classes.ul, classes.selfUl]
                           : [classes.ul]
                       }
@@ -333,8 +334,9 @@ class App extends React.Component {
                       <ListItem
                         key={`item-${i}`}
                         className={
-                          "AHHHHHHHH" == message.sid
-                            ? //this.chatRoom.sessionId == message.sid
+                          //"AHHHHHHHH" == message.sid
+                          this.chatRoom.sessionId == message.sid
+                            ? 
                             [classes.selfListItem, classes.listItem]
                             : [classes.listItem]
                         }
@@ -349,8 +351,9 @@ class App extends React.Component {
                           <Grid item>
                             <Typography
                               className={
-                                "AHHHHHHHH" == message.sid
-                                  ? //this.chatRoom.sessionId == message.sid
+                                //"AHHHHHHHH" == message.sid
+                                this.chatRoom.sessionId == message.sid
+                                  ? 
                                   [
                                     classes.selfListItemText,
                                     classes.listItemText
