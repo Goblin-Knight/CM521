@@ -64,6 +64,7 @@ const styles = theme => ({
   drawerPaper: {
     width: 250,
     height: "100vh",
+    padding: "10px",
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       position: "relative"
@@ -222,11 +223,16 @@ class App extends React.Component {
       { messages: [...this.state.messages, change.value] },
       this.autoScroll.bind(this)
     );
+    this.state.messages.sort(this.sortByTimestamp);
   }
 
   autoScroll() {
     var domMessages = ReactDOM.findDOMNode(this.refs.messages);
     domMessages.scrollTop = domMessages.scrollHeight;
+  }
+
+  sortByTimestamp(x, y) {
+    return x.t - y.t;
   }
 
   updateDimensions() {
@@ -278,6 +284,11 @@ class App extends React.Component {
           justify="flex-start"
           direction="column"
         >
+          <Grid item xs>
+            <Typography>
+              這是一個不分姓名、姓別、種族的匿名聊天室，這裏支援最多50個地球人和火星人傾談的地方。但由於現時只有中文版，你還得先懂得中文才行LOL
+            </Typography>
+          </Grid>
           <img
             src="https://github.com/gamestdio/colyseus/raw/master/media/header.png?raw=true"
             height="70px"
@@ -331,6 +342,7 @@ class App extends React.Component {
                     <ul
                       className={
                         //"AHHHHHHHH" == message.sid
+                        this.chatRoom.sessionId != null &&
                         this.chatRoom.sessionId == message.sid
                           ? [classes.ul, classes.selfUl]
                           : [classes.ul]
@@ -343,6 +355,7 @@ class App extends React.Component {
                         key={`item-${i}`}
                         className={
                           //"AHHHHHHHH" == message.sid
+                          this.chatRoom.sessionId != null &&
                           this.chatRoom.sessionId == message.sid
                             ? [classes.selfListItem, classes.listItem]
                             : [classes.listItem]
@@ -359,6 +372,7 @@ class App extends React.Component {
                             <Typography
                               className={
                                 //"AHHHHHHHH" == message.sid
+                                this.chatRoom.sessionId != null &&
                                 this.chatRoom.sessionId == message.sid
                                   ? [
                                       classes.selfListItemText,
@@ -377,7 +391,7 @@ class App extends React.Component {
                           </Grid>
                           <Grid item>
                             <Moment
-                              format="YYYY/MM/DD hh:mm:ss Z"
+                              format="YYYY/MM/DD HH:mm:ss Z"
                               unix
                               locale="zh-hk"
                               className={classes.listItemTime}
