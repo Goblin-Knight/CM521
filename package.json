@@ -3,12 +3,16 @@
   "description": null,
   "version": "0.0.65",
   "dependencies": {
-    "react-dom": "16.0.0",
-    "react": "latest",
-    "material-ui-icons": "1.0.0-beta.17",
-    "material-ui": "0.20.0",
+    "colyseus": "0.8.9",
     "colyseus.js": "0.8.2",
-    "colyseus": "0.8.9"
+    "material-ui": "next",
+    "material-ui-icons": "1.0.0-beta.17",
+    "moment": "2.20.1",
+    "prop-types": "15.6.0",
+    "react": "latest",
+    "react-dom": "16.0.0",
+    "react-moment": "0.7.0",
+    "react-resize-aware": "2.7.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.0"

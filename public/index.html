@@ -1,16 +1,140 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="theme-color" content="#000000">
-  <!--
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<!--
     manifest.json provides metadata used when your web app is added to the
     homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
   -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <!--
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="path/to/activityindicator.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<!--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">-->
+
+	<style>
+		html,
+		body {
+			overflow-x: hidden;
+			overflow-y: hidden;
+			width: 100vw;
+			height: 100vh;
+			margin: 0px;
+		}
+
+		body {
+			font-family: 'Source Sans Pro', sans-serif;
+			background: #dfdfdf;
+			color: #36383e;
+			font-size: 16px;
+		}
+
+		@media only screen and (max-width: 64em) {
+			#top .columns {
+				padding: 0px;
+			}
+		}
+		/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+		/*header {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    header>div {
+      text-align: center;
+      background: #222;
+      color: white;
+      height: 70px;
+      line-height: 70px;
+      position: relative;
+      min-height: 70px;
+    }
+
+    #logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 4em;
+    }
+
+    #title {
+      position: absolute;
+      top: 0;
+      bottom: 5px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      max-width: 80vw;
+      text-align: center;
+      color: Red;
+      height: 20px;
+      font-style: italic;
+      font-size: .8em;
+    }
+
+    .loading {    
+	    background: #dfdfdf;
+      height: 100vh;
+	    width: 100vw;
+      line-height: 100vh;
+      text-align: center;
+      margin: 0;
+    }
+
+    #messages {                  
+      -webkit-overflow-scrolling: touch;
+    }
+
+    #messages>p {
+      margin-bottom: 10px;
+    }
+
+    form {
+      //position: absolute; //bottom: 0; //height: 10vh; 
+    }
+
+    button {
+      //display: inline-block; //width: 20vw; //height: 10vh; //font-size: 24px; 
+      //color: #36383e; 
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      text-decoration: none;
+    }*/
+
+		.noselect {
+			-webkit-touch-callout: none;
+			/* iOS Safari */
+			-webkit-user-select: none;
+			/* Safari */
+			-khtml-user-select: none;
+			/* Konqueror HTML */
+			-moz-user-select: none;
+			/* Firefox */
+			-ms-user-select: none;
+			/* Internet Explorer/Edge */
+			user-select: none;
+			/* Non-prefixed version, currently supported by Chrome and Opera */
+		}
+
+		footer {
+			/*position: -webkit-sticky; 
+      position: sticky; 
+      bottom: 0; 
+      z-index: 999;*/
+			background: #9f9f9f;
+			display: block;
+			/*color: black;
+      height: auto;*/
+		}
+	</style>
+	<!--
     Notice the use of %PUBLIC_URL% in the tags above.
     It will be replaced with the URL of the `public` folder during the build.
     Only files inside the `public` folder can be referenced from the HTML.
@@ -19,83 +143,34 @@
     work correctly both with client-side routing and a non-root public URL.
     Learn how to configure a non-root public URL by running `npm run build`.
   -->
-  <title>React App</title>
-  
+	<title>哥白尼匿名聊天室</title>
+
 </head>
+
 <body>
-  <html>
-  <header>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+	<html>
+	<header>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 
-	  <script src="https://colyseus-example.herokuapp.com/colyseus.js" /></script>
-	
-    <style>
-	    html, body { background: #222; overflow-x: hidden; 
-      overflow-y: hidden; width: 100vw; height: 100vh; } 
-      
-      body { font-family:	'Source Sans Pro', sans-serif; 
-      background: #dfdfdf; color: #36383e; font-size: 16px; } 
-      
-      header { position: -webkit-sticky;	position: sticky; 
-      top: 0; z-index: 999; }
-      
-      header > div { text-align: center; background: #222; 
-      color: white; height: 70px;	line-height: 70px; 
-      position: relative; min-height: 70px; } 
-      
-      #logo { position: absolute; top: 0; left: 0; right: 0;
-      margin:	auto; height: 4em; } 
-      
-      #title {position: absolute; top: 0; bottom:5px; left: 0; right: 0; 
-      margin: auto; max-width: 80vw; text-align:center;
-      color:Red; height:20px; font-style: italic; font-size:.8em;}
-      
-      .loading { background: snow; height: 100vh; line-height: 80vh;
-	    text-align: center; margin: 0; } 
-      
-      #messages { overflow: scroll; margin-top: 14vh; height: 76vh; 
-      padding: 12px; -webkit-overflow-scrolling:	touch; }
-      
-      #messages > p { margin-bottom: 10px; } 
-      
-      form { //position: absolute; //bottom: 0; //height: 10vh; 
-      }
-      
-      input[type="text"] { //display: inline-block; //width: 80vw;
-      //height: 10vh; //font-size: 24px; //padding: 12px; 
-      color: #fff; 
-      }
-      
-      button {
-	    //display: inline-block; //width: 20vw; //height: 10vh; //font-size: 24px; 
-      //color: #36383e; 
-      -webkit-tap-highlight-color:rgba(0,0,0,0); text-decoration: none; } 
-  
-      .noselect { -webkit-touch-callout: none; 
-      /* iOS Safari */ -webkit-user-select: none;
-	    /* Safari */ -khtml-user-select: none; 
-      /* Konqueror HTML */ -moz-user-select: none; 
-      /* Firefox */ -ms-user-select: none;
-	    /* Internet Explorer/Edge */ user-select: none; 
-      /* Non-prefixed version, currently supported by Chrome and Opera */ } 
+		<script src="https://colyseus-example.herokuapp.com/colyseus.js" /></script>
 
-      footer	{ background: #222; color: white; width: 100%;
-      height: 5em; text-align: center; line-height: 40px; 
-      position: -webkit-sticky;
-	    position: sticky; bottom: 0; padding: 0 1em; }
-    </style>
 
-    <!-- dummy Symbol polyfill -->
-    <script>
-      if (typeof(Symbol)==="undefined") { window.Symbol = function(arg) { return arg; } }
-    </script>
-  </header>
-  <body>
-    <div id="app"></div>
-  </body>
-</html>
-  <!--
+
+		<!-- dummy Symbol polyfill -->
+		<script>
+			if (typeof(Symbol)==="undefined") { window.Symbol = function(arg) { return arg; } }
+		</script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>-->
+	</header>
+
+	<body>
+		<div id="app"></div>
+	</body>
+
+	</html>
+	<!--
     This HTML file is a template.
     If you open it directly in the browser, you will see an empty page.
 
@@ -106,4 +181,5 @@
     To create a production bundle, use `npm run build` or `yarn build`.
   -->
 </body>
+
 </html>
