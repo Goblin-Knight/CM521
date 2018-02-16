@@ -132,7 +132,8 @@ const styles = theme => ({
     color: "#fff"
   },
   listItemText: {
-    wordBreak: "break-all"
+    wordBreak: "break-all",
+    margin: 0
   },
   listItemTime: { fontSize: "14px" },
   selfListItemText: {
@@ -195,8 +196,8 @@ class App extends React.Component {
       messages: [
         {
           sid: "AHHHHHHHH",
-          msg:
-          "HAHAH11111111111111111111111111111 11111111111111111AHAHAHAHAHA 11111111111111111AHAHAHAHAHA",
+          msg: `HAHAH11111111111
+            111111111111111111 11111111111111111AHAHAHAHAHA 11111111111111111AHAHAHAHAHA`,
           t: 1518597875000
         },
         {
@@ -367,7 +368,11 @@ class App extends React.Component {
                               }
                               dense
                             >
-                              {message.msg}
+                              {message.msg.split("\n").map((item, i) => {
+                                return (
+                                  <p className={classes.listItemText}>{item}</p>
+                                );
+                              })}
                             </Typography>
                           </Grid>
                           <Grid item>
