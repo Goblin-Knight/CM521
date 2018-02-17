@@ -63,8 +63,7 @@ const styles = theme => ({
   drawerHeader: theme.mixins.toolbar,
   drawerPaper: {
     width: 250,
-    height: "100vh",
-    padding: "10px",
+    height: "100vh",    
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       position: "relative"
@@ -281,11 +280,27 @@ class App extends React.Component {
           container
           className={classes.grid}
           alignItems="center"
-          justify="flex-start"
+          justify="center"
           direction="column"
         >
           <Grid item xs>
-            <Typography>
+            <a
+              target="_blank"
+              href="https://play.google.com/store/apps/details?id=com.goblinchatnative"
+            >
+              <Typography>點擊前往</Typography>
+            </a>
+          </Grid>
+          <Grid item xs>
+            <a              
+              target="_blank"
+              href="https://play.google.com/store/apps/details?id=com.goblinchatnative"
+            >
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://play.google.com/store/apps/details?id=com.goblinchatnative" />
+            </a>
+          </Grid>
+          <Grid item xs>
+            <Typography style={{padding:'15px'}}>
               這是一個不分姓名、姓別、種族的匿名聊天室，這裏支援最多50個地球人和火星人共同在線傾談的地方。但由於現時只有中文版，你還得先懂得中文才行LOL
             </Typography>
           </Grid>
