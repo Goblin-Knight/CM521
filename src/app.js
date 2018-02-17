@@ -286,7 +286,7 @@ class App extends React.Component {
         >
           <Grid item xs>
             <Typography>
-              這是一個不分姓名、姓別、種族的匿名聊天室，這裏支援最多50個地球人和火星人傾談的地方。但由於現時只有中文版，你還得先懂得中文才行LOL
+              這是一個不分姓名、姓別、種族的匿名聊天室，這裏支援最多50個地球人和火星人共同在線傾談的地方。但由於現時只有中文版，你還得先懂得中文才行LOL
             </Typography>
           </Grid>
           <img
