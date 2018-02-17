@@ -288,7 +288,7 @@ class App extends React.Component {
               target="_blank"
               href="https://play.google.com/store/apps/details?id=com.goblinchatnative"
             >
-              <Typography>點擊前往</Typography>
+              <Typography>點擊前往GooglePlay商店</Typography>
             </a>
           </Grid>
           <Grid item xs>
